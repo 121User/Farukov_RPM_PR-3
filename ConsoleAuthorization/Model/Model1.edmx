@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ModelLybrary" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="CL_ID" />
+          </Key>
+          <Property Name="CL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CL_LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CL_FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CL_Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="CL_Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CL_DateOfBirdth" Type="date" Nullable="false" />
+          <Property Name="CL_Password" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EV_ID" />
+          </Key>
+          <Property Name="EV_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EV_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EV_Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EV_DateEvent" Type="datetime" Nullable="false" />
+          <Property Name="EV_CostEvent" Type="int" Nullable="false" />
+          <Property Name="EV_QuantitySeats" Type="int" Nullable="false" />
+          <Property Name="H_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventTicket">
+          <Key>
+            <PropertyRef Name="EVT_ID" />
+          </Key>
+          <Property Name="EVT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EV_ID" Type="int" Nullable="false" />
+          <Property Name="CL_ID" Type="int" Nullable="false" />
+          <Property Name="EVT_Date" Type="datetime" Nullable="false" />
+          <Property Name="PM_ID" Type="int" Nullable="false" />
+          <Property Name="EVT_CostTicket" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="E_ID" />
+          </Key>
+          <Property Name="E_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="E_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="E_Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="E_DateExhibition" Type="datetime" Nullable="false" />
+          <Property Name="E_CostExhibition" Type="int" Nullable="false" />
+          <Property Name="E_QuantitySeats" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExhibitionTicket">
+          <Key>
+            <PropertyRef Name="ET_ID" />
+          </Key>
+          <Property Name="ET_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="E_ID" Type="int" Nullable="false" />
+          <Property Name="CL_ID" Type="int" Nullable="false" />
+          <Property Name="ET_Date" Type="datetime" Nullable="false" />
+          <Property Name="PM_ID" Type="int" Nullable="false" />
+          <Property Name="ET_CostTicket" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TE_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CL_ID" Type="int" Nullable="false" />
+          <Property Name="TO_ID" Type="int" Nullable="false" />
+          <Property Name="O_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="O_Description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PM_ID" />
+          </Key>
+          <Property Name="PM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PM_Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_NameRole" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="R_DescriptionRole" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="STAFF_ID" />
+          </Key>
+          <Property Name="STAFF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STAFF_LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="STAFF_FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="STAFF_Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="STAFF_Phone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="STAFF_Email" Type="varchar" MaxLength="20" />
+          <Property Name="STAFF_Password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="STAFF_DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="R_ID" Type="int" Nullable="false" />
+          <Property Name="STAFF_Experience" Type="int" />
+          <Property Name="STAFF_Salary" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeEvent">
+          <Key>
+            <PropertyRef Name="TE_ID" />
+          </Key>
+          <Property Name="TE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TE_NameType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOrder">
+          <Key>
+            <PropertyRef Name="TO_ID" />
+          </Key>
+          <Property Name="TO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TO_NameType" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Event_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="H_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventTicket_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventTicket_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EV_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="EV_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventTicket_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="PM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_Exhibition">
+          <End Role="Exhibition" Type="Self.Exhibition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibition">
+              <PropertyRef Name="E_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="PM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hall_TypeEvent">
+          <End Role="TypeEvent" Type="Self.TypeEvent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeEvent">
+              <PropertyRef Name="TE_ID" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="TE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_TypeOrder">
+          <End Role="TypeOrder" Type="Self.TypeOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOrder">
+              <PropertyRef Name="TO_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="TO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="R_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelLybraryContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTicket" EntityType="Self.EventTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exhibition" EntityType="Self.Exhibition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExhibitionTicket" EntityType="Self.ExhibitionTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeEvent" EntityType="Self.TypeEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOrder" EntityType="Self.TypeOrder" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Event_Hall" Association="Self.FK_Event_Hall">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventTicket_Client" Association="Self.FK_EventTicket_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventTicket_Event" Association="Self.FK_EventTicket_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventTicket_PaymentMethod" Association="Self.FK_EventTicket_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_Client" Association="Self.FK_ExhibitionTicket_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_Exhibition" Association="Self.FK_ExhibitionTicket_Exhibition">
+            <End Role="Exhibition" EntitySet="Exhibition" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_PaymentMethod" Association="Self.FK_ExhibitionTicket_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hall_TypeEvent" Association="Self.FK_Hall_TypeEvent">
+            <End Role="TypeEvent" EntitySet="TypeEvent" />
+            <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_TypeOrder" Association="Self.FK_Order_TypeOrder">
+            <End Role="TypeOrder" EntitySet="TypeOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Roles" Association="Self.FK_Staff_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelLybrary" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="CL_ID" />
+          </Key>
+          <Property Name="CL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CL_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CL_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CL_Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CL_Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CL_DateOfBirdth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CL_Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EventTicket" Relationship="Self.FK_EventTicket_Client" FromRole="Client" ToRole="EventTicket" />
+          <NavigationProperty Name="ExhibitionTicket" Relationship="Self.FK_ExhibitionTicket_Client" FromRole="Client" ToRole="ExhibitionTicket" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EV_ID" />
+          </Key>
+          <Property Name="EV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EV_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EV_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EV_DateEvent" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EV_CostEvent" Type="Int32" Nullable="false" />
+          <Property Name="EV_QuantitySeats" Type="Int32" Nullable="false" />
+          <Property Name="H_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hall" Relationship="Self.FK_Event_Hall" FromRole="Event" ToRole="Hall" />
+          <NavigationProperty Name="EventTicket" Relationship="Self.FK_EventTicket_Event" FromRole="Event" ToRole="EventTicket" />
+        </EntityType>
+        <EntityType Name="EventTicket">
+          <Key>
+            <PropertyRef Name="EVT_ID" />
+          </Key>
+          <Property Name="EVT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EV_ID" Type="Int32" Nullable="false" />
+          <Property Name="CL_ID" Type="Int32" Nullable="false" />
+          <Property Name="EVT_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PM_ID" Type="Int32" Nullable="false" />
+          <Property Name="EVT_CostTicket" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_EventTicket_Client" FromRole="EventTicket" ToRole="Client" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_EventTicket_Event" FromRole="EventTicket" ToRole="Event" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_EventTicket_PaymentMethod" FromRole="EventTicket" ToRole="PaymentMethod" />
+        </EntityType>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="E_ID" />
+          </Key>
+          <Property Name="E_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="E_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_DateExhibition" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="E_CostExhibition" Type="Int32" Nullable="false" />
+          <Property Name="E_QuantitySeats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ExhibitionTicket" Relationship="Self.FK_ExhibitionTicket_Exhibition" FromRole="Exhibition" ToRole="ExhibitionTicket" />
+        </EntityType>
+        <EntityType Name="ExhibitionTicket">
+          <Key>
+            <PropertyRef Name="ET_ID" />
+          </Key>
+          <Property Name="ET_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="E_ID" Type="Int32" Nullable="false" />
+          <Property Name="CL_ID" Type="Int32" Nullable="false" />
+          <Property Name="ET_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PM_ID" Type="Int32" Nullable="false" />
+          <Property Name="ET_CostTicket" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ExhibitionTicket_Client" FromRole="ExhibitionTicket" ToRole="Client" />
+          <NavigationProperty Name="Exhibition" Relationship="Self.FK_ExhibitionTicket_Exhibition" FromRole="ExhibitionTicket" ToRole="Exhibition" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_ExhibitionTicket_PaymentMethod" FromRole="ExhibitionTicket" ToRole="PaymentMethod" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TE_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Hall" FromRole="Hall" ToRole="Event" />
+          <NavigationProperty Name="TypeEvent" Relationship="Self.FK_Hall_TypeEvent" FromRole="Hall" ToRole="TypeEvent" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CL_ID" Type="Int32" Nullable="false" />
+          <Property Name="TO_ID" Type="Int32" Nullable="false" />
+          <Property Name="O_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="O_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="TypeOrder" Relationship="Self.FK_Order_TypeOrder" FromRole="Order" ToRole="TypeOrder" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PM_ID" />
+          </Key>
+          <Property Name="PM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PM_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EventTicket" Relationship="Self.FK_EventTicket_PaymentMethod" FromRole="PaymentMethod" ToRole="EventTicket" />
+          <NavigationProperty Name="ExhibitionTicket" Relationship="Self.FK_ExhibitionTicket_PaymentMethod" FromRole="PaymentMethod" ToRole="ExhibitionTicket" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_NameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="R_DescriptionRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Roles" FromRole="Roles" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="STAFF_ID" />
+          </Key>
+          <Property Name="STAFF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STAFF_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STAFF_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STAFF_Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STAFF_Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STAFF_Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STAFF_Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STAFF_DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="R_ID" Type="Int32" Nullable="false" />
+          <Property Name="STAFF_Experience" Type="Int32" />
+          <Property Name="STAFF_Salary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Staff_Roles" FromRole="Staff" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeEvent">
+          <Key>
+            <PropertyRef Name="TE_ID" />
+          </Key>
+          <Property Name="TE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TE_NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Hall" Relationship="Self.FK_Hall_TypeEvent" FromRole="TypeEvent" ToRole="Hall" />
+        </EntityType>
+        <EntityType Name="TypeOrder">
+          <Key>
+            <PropertyRef Name="TO_ID" />
+          </Key>
+          <Property Name="TO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TO_NameType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_TypeOrder" FromRole="TypeOrder" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_EventTicket_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CL_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="H_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventTicket_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EV_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="EV_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventTicket_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTicket" Type="Self.EventTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="EventTicket">
+              <PropertyRef Name="PM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_Exhibition">
+          <End Role="Exhibition" Type="Self.Exhibition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibition">
+              <PropertyRef Name="E_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="E_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExhibitionTicket_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExhibitionTicket" Type="Self.ExhibitionTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="ExhibitionTicket">
+              <PropertyRef Name="PM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hall_TypeEvent">
+          <End Role="TypeEvent" Type="Self.TypeEvent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeEvent">
+              <PropertyRef Name="TE_ID" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="TE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_TypeOrder">
+          <End Role="TypeOrder" Type="Self.TypeOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOrder">
+              <PropertyRef Name="TO_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="TO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="R_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryBase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="EventTicket" EntityType="Self.EventTicket" />
+          <EntitySet Name="Exhibition" EntityType="Self.Exhibition" />
+          <EntitySet Name="ExhibitionTicket" EntityType="Self.ExhibitionTicket" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeEvent" EntityType="Self.TypeEvent" />
+          <EntitySet Name="TypeOrder" EntityType="Self.TypeOrder" />
+          <AssociationSet Name="FK_EventTicket_Client" Association="Self.FK_EventTicket_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_Client" Association="Self.FK_ExhibitionTicket_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Hall" Association="Self.FK_Event_Hall">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventTicket_Event" Association="Self.FK_EventTicket_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventTicket_PaymentMethod" Association="Self.FK_EventTicket_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="EventTicket" EntitySet="EventTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_Exhibition" Association="Self.FK_ExhibitionTicket_Exhibition">
+            <End Role="Exhibition" EntitySet="Exhibition" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExhibitionTicket_PaymentMethod" Association="Self.FK_ExhibitionTicket_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="ExhibitionTicket" EntitySet="ExhibitionTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hall_TypeEvent" Association="Self.FK_Hall_TypeEvent">
+            <End Role="TypeEvent" EntitySet="TypeEvent" />
+            <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_TypeOrder" Association="Self.FK_Order_TypeOrder">
+            <End Role="TypeOrder" EntitySet="TypeOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Roles" Association="Self.FK_Staff_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelLybraryContainer" CdmEntityContainer="LibraryBase">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ModelLybrary.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="CL_ID" ColumnName="CL_ID" />
+                <ScalarProperty Name="CL_LastName" ColumnName="CL_LastName" />
+                <ScalarProperty Name="CL_FirstName" ColumnName="CL_FirstName" />
+                <ScalarProperty Name="CL_Patronymic" ColumnName="CL_Patronymic" />
+                <ScalarProperty Name="CL_Email" ColumnName="CL_Email" />
+                <ScalarProperty Name="CL_DateOfBirdth" ColumnName="CL_DateOfBirdth" />
+                <ScalarProperty Name="CL_Password" ColumnName="CL_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="ModelLybrary.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EV_ID" ColumnName="EV_ID" />
+                <ScalarProperty Name="EV_Name" ColumnName="EV_Name" />
+                <ScalarProperty Name="EV_Description" ColumnName="EV_Description" />
+                <ScalarProperty Name="EV_DateEvent" ColumnName="EV_DateEvent" />
+                <ScalarProperty Name="EV_CostEvent" ColumnName="EV_CostEvent" />
+                <ScalarProperty Name="EV_QuantitySeats" ColumnName="EV_QuantitySeats" />
+                <ScalarProperty Name="H_ID" ColumnName="H_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTicket">
+            <EntityTypeMapping TypeName="ModelLybrary.EventTicket">
+              <MappingFragment StoreEntitySet="EventTicket">
+                <ScalarProperty Name="EVT_ID" ColumnName="EVT_ID" />
+                <ScalarProperty Name="EV_ID" ColumnName="EV_ID" />
+                <ScalarProperty Name="CL_ID" ColumnName="CL_ID" />
+                <ScalarProperty Name="EVT_Date" ColumnName="EVT_Date" />
+                <ScalarProperty Name="PM_ID" ColumnName="PM_ID" />
+                <ScalarProperty Name="EVT_CostTicket" ColumnName="EVT_CostTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibition">
+            <EntityTypeMapping TypeName="ModelLybrary.Exhibition">
+              <MappingFragment StoreEntitySet="Exhibition">
+                <ScalarProperty Name="E_ID" ColumnName="E_ID" />
+                <ScalarProperty Name="E_Name" ColumnName="E_Name" />
+                <ScalarProperty Name="E_Description" ColumnName="E_Description" />
+                <ScalarProperty Name="E_DateExhibition" ColumnName="E_DateExhibition" />
+                <ScalarProperty Name="E_CostExhibition" ColumnName="E_CostExhibition" />
+                <ScalarProperty Name="E_QuantitySeats" ColumnName="E_QuantitySeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExhibitionTicket">
+            <EntityTypeMapping TypeName="ModelLybrary.ExhibitionTicket">
+              <MappingFragment StoreEntitySet="ExhibitionTicket">
+                <ScalarProperty Name="ET_ID" ColumnName="ET_ID" />
+                <ScalarProperty Name="E_ID" ColumnName="E_ID" />
+                <ScalarProperty Name="CL_ID" ColumnName="CL_ID" />
+                <ScalarProperty Name="ET_Date" ColumnName="ET_Date" />
+                <ScalarProperty Name="PM_ID" ColumnName="PM_ID" />
+                <ScalarProperty Name="ET_CostTicket" ColumnName="ET_CostTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hall">
+            <EntityTypeMapping TypeName="ModelLybrary.Hall">
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="H_ID" ColumnName="H_ID" />
+                <ScalarProperty Name="TE_ID" ColumnName="TE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="ModelLybrary.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+                <ScalarProperty Name="CL_ID" ColumnName="CL_ID" />
+                <ScalarProperty Name="TO_ID" ColumnName="TO_ID" />
+                <ScalarProperty Name="O_Name" ColumnName="O_Name" />
+                <ScalarProperty Name="O_Description" ColumnName="O_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethod">
+            <EntityTypeMapping TypeName="ModelLybrary.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="PM_ID" ColumnName="PM_ID" />
+                <ScalarProperty Name="PM_Name" ColumnName="PM_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ModelLybrary.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="R_NameRole" ColumnName="R_NameRole" />
+                <ScalarProperty Name="R_DescriptionRole" ColumnName="R_DescriptionRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="ModelLybrary.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="STAFF_ID" ColumnName="STAFF_ID" />
+                <ScalarProperty Name="STAFF_LastName" ColumnName="STAFF_LastName" />
+                <ScalarProperty Name="STAFF_FirstName" ColumnName="STAFF_FirstName" />
+                <ScalarProperty Name="STAFF_Patronymic" ColumnName="STAFF_Patronymic" />
+                <ScalarProperty Name="STAFF_Phone" ColumnName="STAFF_Phone" />
+                <ScalarProperty Name="STAFF_Email" ColumnName="STAFF_Email" />
+                <ScalarProperty Name="STAFF_Password" ColumnName="STAFF_Password" />
+                <ScalarProperty Name="STAFF_DateOfBirth" ColumnName="STAFF_DateOfBirth" />
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="STAFF_Experience" ColumnName="STAFF_Experience" />
+                <ScalarProperty Name="STAFF_Salary" ColumnName="STAFF_Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ModelLybrary.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeEvent">
+            <EntityTypeMapping TypeName="ModelLybrary.TypeEvent">
+              <MappingFragment StoreEntitySet="TypeEvent">
+                <ScalarProperty Name="TE_ID" ColumnName="TE_ID" />
+                <ScalarProperty Name="TE_NameType" ColumnName="TE_NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOrder">
+            <EntityTypeMapping TypeName="ModelLybrary.TypeOrder">
+              <MappingFragment StoreEntitySet="TypeOrder">
+                <ScalarProperty Name="TO_ID" ColumnName="TO_ID" />
+                <ScalarProperty Name="TO_NameType" ColumnName="TO_NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
